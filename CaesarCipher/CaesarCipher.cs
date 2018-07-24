@@ -7,24 +7,25 @@ namespace CaesarCipher
     {
         public static string Rotate(string text, int shiftKey)
         {
-            char[] alphabet = "abcdefghijklmnopqrstuvwxyz".ToCharArray();
-            char[] ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
-             
+            string alphabets = "abcdefghijklmnopqrstuvwxyz";
+
+            //var x = text.Select(c => char.IsUpper(c) ? (alphabets.IndexOf(char.ToLower(c)) + shiftKey) % 26 : (alphabets.IndexOf(c) + shiftKey) % 26).ToString();
+
             string str = "";
-            foreach(var i in text)
+            foreach (var i in text)
             {
-                if(alphabet.Contains(i))
+                if (alphabets.Contains(i))
                 {
-                    var index = Array.IndexOf(alphabet, i);
+                    var index = alphabets.IndexOf(i);
                     index = (index + shiftKey) % 26;
-                    
-                    str += alphabet[index];
+
+                    str += alphabets[index];
                 }
-                else if(ALPHABET.Contains(i))
+                else if (alphabets.ToUpper().Contains(i))
                 {
-                    var index = Array.IndexOf(ALPHABET, i);
+                    var index = alphabets.ToUpper().IndexOf(i);
                     index = (index + shiftKey) % 26;
-                    str += ALPHABET[index];
+                    str += alphabets.ToUpper()[index];
                 }
                 else
                 {
@@ -32,7 +33,6 @@ namespace CaesarCipher
                 }
             }
             return str;
-            throw new NotImplementedException("You need to implement this function.");
         }
     }
 }
